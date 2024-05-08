@@ -1,5 +1,6 @@
 package com.example.proyectodam.Screens.Login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -32,49 +33,54 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = Modifier.background(Color(112,187,129))
     ) {
-        Text(
-            text = "Iniciar Sesión",
-            style = MaterialTheme.typography.h4,
-            color = Color.Black
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = username,
-            onValueChange = { username = it; loginViewModel.onLoginChanged(username, password) },
-            label = { Text("Usuario") },
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it; loginViewModel.onLoginChanged(username, password) },
-            label = { Text("Contraseña") },
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = { loginViewModel.onBtnClick(navController, context) },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = loginEnable
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text("Iniciar Sesión")
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-        ClickableText(
-            text = AnnotatedString("¿No tienes una cuenta? Crea una aquí"),
-            style = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Blue,
-                textDecoration = TextDecoration.Underline
-            ),
-            onClick = {
-                navController.navigate(Routes.Register.route)
+            Text(
+                text = "Iniciar Sesión",
+                style = MaterialTheme.typography.h4,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = username,
+                onValueChange = { username = it; loginViewModel.onLoginChanged(username, password) },
+                label = { Text("Usuario") },
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it; loginViewModel.onLoginChanged(username, password) },
+                label = { Text("Contraseña") },
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = { loginViewModel.onBtnClick(navController, context) },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                enabled = loginEnable
+            ) {
+                Text("Iniciar Sesión")
             }
-            
-        )
+            Spacer(modifier = Modifier.height(12.dp))
+            ClickableText(
+                text = AnnotatedString("¿No tienes una cuenta? Crea una aquí"),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    color = Color.Blue,
+                    textDecoration = TextDecoration.Underline
+                ),
+                onClick = {
+                    navController.navigate(Routes.Register.route)
+                }
+
+            )
+        }
     }
 }

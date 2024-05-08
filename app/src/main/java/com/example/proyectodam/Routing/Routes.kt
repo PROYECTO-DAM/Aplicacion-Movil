@@ -6,6 +6,14 @@ sealed class Routes(val route:String) {
     object Register: Routes("registro")
     object Main: Routes("main")
     object Nominas: Routes("nominas")
-    object Nomina: Routes("nomina")
-    object Fichaje: Routes("fichaje")
+
+    object Nomina: Routes("nomina/{id}") {
+        fun createRoute(id:Int) = "nomina/$id"
+    }
+    object Fichaje: Routes("fichaje/{id}") {
+        fun createRoute(id:Int) = "fichaje/$id"
+    }
+    object Perfil : Routes("perfil/{id}") {
+        fun createRoute(id: Int) = "perfil/$id"
+    }
 }

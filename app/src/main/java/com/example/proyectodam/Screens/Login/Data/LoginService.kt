@@ -40,7 +40,8 @@ class LoginService @Inject constructor(private val UsuarioAPI: UsuarioAPI, priva
                             email = usuarioResponse.email,
                             password = usuarioResponse.password
                         )
-                        Gson().toJson(user).let { userPreference.addUser("usuario", it) }
+                        val serializedUser = Gson().toJson(user);
+                        userPreference.addUser("usuario", serializedUser);
                     }
                 } catch (e:IOException) {
                     throw e
