@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface UsuarioAPI {
 
     @GET("/api/v1/users/getUser")
-    suspend fun getUserById(@Header("authorization") token:String):Response<UsuarioResponse>
+    suspend fun getUserById(@Header("authorization") token:String, @Header("_id") id:Int):Response<UsuarioResponse>
 
     @POST("/api/v1/users/signIn")
     suspend fun login(@Body user:LoginRequest):Response<LoginResponse>

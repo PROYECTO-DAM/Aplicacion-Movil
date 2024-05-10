@@ -1,11 +1,12 @@
 package com.example.proyectodam.Classes
 
+import com.google.gson.annotations.SerializedName
+
 data class Nomina(
-    val id:Int,
-    val pago:Float,
-    val mes:String,
-    val año:Int,
-    val horas:Int,
-    val proyecto:Int,
-    val empleado:Int
+    @SerializedName("Id") val id:Int,
+    @SerializedName("Pago") val pago:Float,
+    @SerializedName("Mes") val mes:String,
+    @SerializedName("Año") val año:Int,
+    @SerializedName("Horas") val horas:Int,
+    @SerializedName("Empleado") val empleado:Int
 )

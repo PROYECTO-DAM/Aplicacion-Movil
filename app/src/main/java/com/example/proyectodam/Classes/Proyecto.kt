@@ -1,6 +1,8 @@
 package com.example.proyectodam.Classes
 
+import com.google.gson.annotations.SerializedName
+
 data class Proyecto(
-    val codigo:Int,
-    val nombre:String,
+    @SerializedName("Codigo") val codigo:Int,
+    @SerializedName("Nombre") val nombre:String,
 )

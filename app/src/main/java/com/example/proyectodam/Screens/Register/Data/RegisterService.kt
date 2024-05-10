@@ -1,10 +1,9 @@
-package com.example.proyectodam.Screens.Register.Controller
+package com.example.proyectodam.Screens.Register.Data
 
 import android.content.Context
 import com.example.proyectodam.Classes.Usuario
 import com.example.proyectodam.Network.DataStore.UserPreferencesService
 import com.example.proyectodam.Network.MetodosAPI.UsuarioAPI
-import com.example.proyectodam.Network.Request.LoginRequest
 import com.example.proyectodam.Network.Utils.SessionManager
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,7 @@ class RegisterService @Inject constructor(private val UsuarioAPI: UsuarioAPI, pr
 
             if (token.isNotEmpty() && token.isNotBlank()) {
                 try {
-                    val usuario = UsuarioAPI.getUserById("Bearer $token")
+                    val usuario = UsuarioAPI.getUserById("Bearer $token", -1)
 
                     val usuarioResponse = usuario.body()?.data!!
 

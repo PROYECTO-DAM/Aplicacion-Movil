@@ -26,26 +26,24 @@ class LoginService @Inject constructor(private val UsuarioAPI: UsuarioAPI, priva
 
             SessionManager(context).saveAuthToken(token)
 
-            if (token.isNotEmpty() && token.isNotBlank()) {
-                try {
-                    val usuario = UsuarioAPI.getUserById("Bearer $token")
+            try {
+                val usuario = UsuarioAPI.getUserById("Bearer $token", -1)
 
-                    val usuarioResponse = usuario.body()?.data!!
+                val usuarioResponse = usuario.body()?.data!!
 
-                    if(usuario.isSuccessful) {
-                        user = Usuario(
-                            id = usuarioResponse.id,
-                            fullname = usuarioResponse.fullname,
-                            role = usuarioResponse.role,
-                            email = usuarioResponse.email,
-                            password = usuarioResponse.password
-                        )
-                        val serializedUser = Gson().toJson(user);
-                        userPreference.addUser("usuario", serializedUser);
-                    }
-                } catch (e:IOException) {
-                    throw e
+                if(usuario.isSuccessful) {
+                    user = Usuario(
+                        id = usuarioResponse.id,
+                        fullname = usuarioResponse.fullname,
+                        role = usuarioResponse.role,
+                        email = usuarioResponse.email,
+                        password = usuarioResponse.password
+                    )
+                    val serializedUser = Gson().toJson(user);
+                    userPreference.addUser("usuario", serializedUser);
                 }
+            } catch (e:IOException) {
+                throw e
             }
             user
         }
